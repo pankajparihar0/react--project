@@ -1,0 +1,45 @@
+
+*{
+  box-sizing: border-box;
+}
+#root{
+  background-color: rgb(33, 33, 76) !important;
+
+}
+.outlet{
+  min-height: 52vh;
+}
+.posts{
+  margin-top: 20px;
+  margin:20px auto;
+  align-items: center;
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.post-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 250px;
+  aspect-ratio:2/2.5;
+  padding: 5px;
+  text-align: center;
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 20px;
+}
+.post-card img{
+  width: 90%;
+  aspect-ratio: 1/1;
+  padding: 3px;
+  border-radius: 20px;
+}
+.login{
+  margin: 25vh  0;
+  max-width: 450px !important;
+  padding: 5px;
+  background-color:rgba(255,255,255,0.1);
+  border-radius: 20%;
+
+}
