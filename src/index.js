@@ -13,11 +13,14 @@ import AllPost from './pages/AllPost';
 import AddPost from './pages/AddPost';
 import AuthLayout from './components/AuthLayout';
 import Post from './pages/Post';
+import EditPost from './pages/EditPost';
+import { useState } from 'react';
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App/>}>
-      <Route path="" element={<Home/>}> </Route>
+      <Route path="" element={<Home />}> </Route>
       <Route path="/login" element={
         <AuthLayout  authentication = {false}> <LogIn/></AuthLayout>
        }> </Route>
@@ -25,7 +28,10 @@ const router = createBrowserRouter(
         <AuthLayout authentication={false}><Signup/></AuthLayout>
         }> </Route>
       <Route path="/all_post" element={
-        <AuthLayout authentication ={false}><AllPost/></AuthLayout>
+        <AuthLayout authentication><AllPost/></AuthLayout>
+        }> </Route>
+        <Route path="/edit_post/:slug" element={
+        <AuthLayout authentication ><EditPost/></AuthLayout>
         }> </Route>
       <Route path="/add_post" element={
         <AuthLayout authentication><AddPost/></AuthLayout>

@@ -9,9 +9,10 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import logo from '../../logo.png'
 
 export default function Header() {
-    const authstatus = useSelector((state)=>state.status);
+    const authstatus = useSelector(state=>state.AuthReducer.status);
     const navigate = useNavigate(); 
     const navItems = [
         {
@@ -63,9 +64,9 @@ export default function Header() {
     </div> */}
 
 
-<Navbar expand="lg" className="bg-body-tertiary">
+<Navbar expand="lg" className="nav">
       <Container>
-        <Navbar.Brand > <Link to="/">Logo</Link></Navbar.Brand>
+        <Navbar.Brand > <Link to="/"><img src={logo} width="100px"/></Link></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className='mx-auto justify-content-end' id="basic-navbar-nav">
           <Nav  className="mx-6 ">

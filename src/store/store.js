@@ -1,6 +1,8 @@
 import { configureStore} from "@reduxjs/toolkit";
 import AuthReducer from './authSlice'
+import PostReducer from './postSlice'
+import PageReducer from './pageNo'
 const store = configureStore({
-reducer:AuthReducer
+reducer:{AuthReducer,PostReducer,PageReducer}
 });
 export default store;

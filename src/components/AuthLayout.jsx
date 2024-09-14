@@ -1,15 +1,17 @@
+import HTMLReactParser from 'html-react-parser/lib/index';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import{Link ,useNavigate} from 'react-router-dom'
 
+
 function Protected({children,authentication=true}) {
     const navigate = useNavigate()
     const [loader,setLoader] = useState(true)
-    const authStatus = useSelector(state => state.status)
+    const authStatus = useSelector(state => state.AuthReducer.status)
 
     useEffect(()=>{
         if(authentication && authStatus !== authentication){
-            console.log("vghbjk");
+ 
             navigate("/login")
         }else if(!authentication && authStatus !== authentication ){
             navigate("/")

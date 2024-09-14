@@ -5,6 +5,7 @@ import Input from './Input'
 import { useDispatch } from 'react-redux'
 import authService from '../appwite/auth'
 import {useForm} from "react-hook-form"
+import logo from '../logo.png'
 function Login() {
     const navigate = useNavigate();
     const dispatch =useDispatch();
@@ -33,14 +34,14 @@ function Login() {
     }
   return (
     <div className='text-white'>
-      <div>logo</div>
+      <div className='p-2'> <img src={logo} alt="logo" width='150px' /> </div>
       <h2>Log In</h2>
       {error && <p className={'text-danger'}>{error}</p>}
       <form onSubmit={handleSubmit(login)}>
         <div className='container p-2 '>
             <Input
             label="Email:"
-            placeholder="enter your email"
+            placeholder="Enter your email"
             type = "email"
             className="m-2"
             {...register("email",{
@@ -59,7 +60,7 @@ function Login() {
             required:true,
           })}
           />
-          <button className='m-2' type="submit">Submit</button>
+          <button className='m-2' type="submit">Log IN</button>
         </div>
       </form>
       <p>Don't have any account 

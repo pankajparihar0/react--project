@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { useDispatch , useSelector} from 'react-redux'
 import{Link ,useNavigate} from 'react-router-dom'
 import Input from './Input'
+import logo from '../logo.png'
 
 function SignUp() {
     const [error,setError] = useState("");
@@ -29,7 +30,7 @@ function SignUp() {
     }
   return (
     <>
-    <div>logo</div>
+    <div className='p-2'> <img src={logo} alt="logo" width='150px' /> </div>
         <h2> Sign Up</h2>
         {error && <p>{error}</p>}
 
@@ -53,7 +54,7 @@ function SignUp() {
           })}
           />
           </div>
-          <button className='m-2' type="submit">Submit</button>
+          <button className='m-2' type="submit">Sing Up</button>
         </form>
         <p>Already have a account 
             <Link to="/login">Log IN</Link>

@@ -6,6 +6,18 @@
   background-color: rgb(33, 33, 76) !important;
 
 }
+.nav{
+  background-color:rgb(119 119 169);
+}
+a{
+  text-decoration: none !important;
+  color: black !important;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+a:hover,a:active{
+  color: rgb(9, 0, 140) !important;
+}
 .outlet{
   min-height: 52vh;
 }
@@ -18,7 +30,7 @@
   flex-wrap: wrap;
   justify-content: center;
 }
-.post-card{
+.post-card{ 
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,6 +39,7 @@
   padding: 5px;
   text-align: center;
   background-color: rgba(255,255,255,0.2);
+  
   border-radius: 20px;
 }
 .post-card img{
@@ -34,6 +47,15 @@
   aspect-ratio: 1/1;
   padding: 3px;
   border-radius: 20px;
+}
+.sign{
+  margin: 25vh  0;
+  max-width: 450px !important;
+  padding: 5px;
+  background-color:rgba(255,255,255,0.1);
+  border-radius: 20%;
+  transition: 2s;
+
 }
 .login{
   margin: 25vh  0;
@@ -43,3 +65,29 @@
   border-radius: 20%;
 
 }
+.post-img{
+  text-align: center;
+  padding: 5px;
+  margin: 2px;;
+  width:95%;
+  aspect-ratio: 1/0.3;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  object-fit: contain;
+}
+.addform{
+  background-color:rgba(255,255,255,0.1);
+  border-radius:5px;
+  margin-top:3%;
+}
+.post{
+  background-color:rgba(255,255,255,0.1); 
+  margin: 2% auto;
+  border-radius: 2%;
+  
+}
+.pagination{
+  display: flex;
+  justify-content: center;
+} 

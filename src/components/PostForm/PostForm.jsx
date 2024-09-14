@@ -6,34 +6,53 @@ import RET from '../RET'
 import service from '../../appwite/config'
 import {useNavigate} from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import Button from 'react-bootstrap/Button';
 
 function PostForm({post}) {
     const {register,handleSubmit,watch ,setValue,control,getValues} = useForm({
         defaultValues:{
             title:post?.title || '',
-            slug:post?.slug ||'',
+            slug:post?.$id ||'',
             content : post?.content || '',
             status:post?.status||'active',
         }
     })
     const  navigate = useNavigate();
-    const userData = useSelector(state=>state.userData)
+    const userData = useSelector(state=>state.AuthReducer.userData)
     const [slg,setSlg] = useState();
+    const [url,setUrl] = useState("");
+    if(post){
+        const fetchimage = async()=>{
+            const p= await service.getFilePrivies(post.Image).then((post)=>(post.href));
+            if(p){
+              setUrl(p);
+            }else{
+              
+            }
+          }
+          fetchimage();
+    }
     const submit = async(data)=>{
         if(post){
-           const file =  data.image[0]?service.uploadFile(data.image[0]):null
+           try{
+            const file = data.image[0]?await service.uploadFile(data.image[0]):null;
             if(file){
-                service.deleteFile(post.featuredImage)
+                
+                console.log(file.$id)
+                if(post.Image !== "active")service.deleteFile(post.Image)
+                    data.Image = file.$id;
             }
             const dbpost = await service.updatePost(
-                (post.$id,{
+                {slug:post.$id,
                     ...data,
-                    featuredImage:file?file.$id:undefined,
-                })
+                }
             )
             if(dbpost){
-                navigate('/post/${dbpost.$id}')
+                navigate(`/post/${dbpost.$id}`)
             }
+        }catch (error) {
+            console.log("this is the Error : "+error);
+        }
 
         }else{
             const file = await service.uploadFile(data.image[0]);
@@ -59,6 +78,10 @@ function PostForm({post}) {
         }
         return (value && typeof value ==='string')
     },[])
+
+    function imagePreview(e){
+        console.log("clicked");
+    }
     // React.useEffect(()=>{
     //     const subscription = watch((value,{name})=>{
     //         if(name === 'title'){
@@ -70,7 +93,7 @@ function PostForm({post}) {
   return (
     <div>
       <form onSubmit={handleSubmit(submit)}>
-        <Input label = "title :"
+        <Input label = "Title : "
         placeholder="Title"
         {...register("title",{required:true})}
         onInput={(e)=>{
@@ -81,15 +104,19 @@ function PostForm({post}) {
         }}
         />
  
-        <Input label = "slug :"
+        <Input label = "Slug : "
         placeholder="slug"
         {...register("slug",{required:true})}
         />
-        <RET label="Content :" name="content" control={control} defaultValue={getValues("content")}/>
+        <RET label="Content : " name="content" control={control} defaultValue={getValues("content")}/>
         <Input label="Featured Image :"
         type="file"
+        onClick = {imagePreview} 
         {...register("image",{required:!post})}/>
-        <input type='submit' value='submit'></input>
+
+        {(post)&&<span><img src={url} alt="Image Preview" width='100px' height='100px'/></span>}
+        {console.log(url)}
+        <Button type='submit' variant="primary">Submit</Button>{' '}
       </form>
     </div>
   )

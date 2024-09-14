@@ -4,7 +4,7 @@ import SignUp from '../components/SignUp';
 
 export default function Signup() {
   return (
-    <div className='container text-center text-white login'>
+    <div className='container text-center text-white sign'>
       <SignUp/> 
     </div>
   )

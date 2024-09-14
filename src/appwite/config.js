@@ -38,7 +38,7 @@ export class Service{
             console.log("this is the Error : "+error);
         }
     }
-    async updatePost(slug,{title,content,featuredImage,status}){
+    async updatePost({slug,title,content,Image,status}){
         try {
             return await this.Database.updateDocument(
                 conf.appwriteDataBaseId,
@@ -46,7 +46,7 @@ export class Service{
                 slug,{
                     title,
                     content,
-                    featuredImage,
+                    Image,
                     status
                 }
             )
@@ -64,7 +64,6 @@ export class Service{
             return true;
         } catch (error) {
             throw error;
-            return false;
         }
     }
     async getPost(slug){
@@ -79,12 +78,25 @@ export class Service{
             return false;
         }
     }
-    async getPosts(querires =[Query.equal("status","active")]){
+    async totalPost(){
         try {
             return await this.Database.listDocuments(
                 conf.appwriteDataBaseId,
                 conf.appwriteCollectionId,
-                querires,
+            ) 
+        } catch (error) {
+           console.log("There is an Error in finding total posts :"+error); 
+        }
+    }
+    async getPosts(limit,offset){
+        try {
+            return await this.Database.listDocuments(
+                conf.appwriteDataBaseId,
+                conf.appwriteCollectionId,
+                [
+                    Query.limit(limit),
+                    Query.offset(offset)
+                ]
             )
         } catch (error) {
             console.log("their is an error: "+error);
@@ -95,7 +107,6 @@ export class Service{
     //file upload service ;
     async uploadFile(file){
         try {
-            console.log(file);
             return await this.storage.createFile(
                         '66b45bae001f1a99e88d',
                         ID.unique(),
@@ -136,11 +147,12 @@ export class Service{
 
     async deleteFile(fileId){
         try {
-            return await this.bucket.deleteFile(
+            return await this.storage.deleteFile(
                 conf.appwriteBucketId,
                 fileId
             )
         } catch (error) {
+            console.log(error);
             throw error;
         }
 
