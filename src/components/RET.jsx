@@ -13,7 +13,7 @@ function RET({name,control,label,defaultValue=""}) {
         control={control}
         render = {({field:{onChange}})=>(
             <Editor
-            apiKey='03v2374yv77fs3k8sohjrgof2m7zj0kx05vbjrjxjaw5f5kz'
+            apiKey='tlvb7s5s4xp1w3hbkv2h3k786a80asnstau6cdszouh52zau'
             initialValue={defaultValue}
             onEditorChange={onChange}/>
         )}
